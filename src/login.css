@@ -1,7 +1,7 @@
 .login-container {
   display: flex;
   width: 100%;
-  height: 100vh; /* Full screen height */
+  height: 100vh;
   font-family: 'Poppins';
   background-color: black;
 }
@@ -12,7 +12,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding-top: 3px;      /* ✅ Add only small top padding */
+  padding-top: 3px;     
   padding-left: 40px;
   padding-right: 40px;
   padding-bottom: 40px;
@@ -28,8 +28,8 @@
   box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
   display: flex;
   flex-direction: column;
-  margin-top: 0;           /* No extra space */
-  margin-bottom: 0;        /* ✅ Remove bottom spacing */
+  margin-top: 0;           
+  margin-bottom: 0;        
 }
 
 .login-form-box h2 {
@@ -57,16 +57,14 @@
   border: 1px solid white;
   border-radius: 6px;
   outline: none;
-  background-color: black; /* ✅ Make input background black */
+  background-color: black; 
   color: white;
 }
 .logoo {
-  width: 60px;           /* adjust as needed */
+  width: 60px;           
   height: auto;
-  margin-bottom: 16px;   /* spacing below logo */
-   /* center the logo horizontally */
+  margin-bottom: 16px;   
 }
-/* Terms checkbox */
 .login-terms {
   display: flex;
   align-items: center;
@@ -79,7 +77,6 @@
   margin-right: 8px;
 }
 
-/* Login Button */
 .login-btn {
   margin-top: 24px;
   padding: 10px;
@@ -95,7 +92,6 @@
   background-color: #555;
 }
 
-/* Divider */
 .login-divider {
   display: flex;
   align-items: center;
@@ -114,7 +110,6 @@
   color: #666;
 }
 
-/* Google Button */
 .login-google-btn {
   display: flex;
   align-items: center;
@@ -133,7 +128,7 @@
   background-color: #f3f3f3;
 }
 .logoo {
-  width: 37px;      /* Adjust size here */
+  width: 37px;     
   height: 48px;
   display: block;
 }
@@ -143,7 +138,6 @@
   height: 20px;
 }
 
-/* RIGHT: Background image section */
 .login-right-image {
   flex: 1;
   background-image: url('assets/back.jpg');
@@ -166,7 +160,7 @@ border-radius: 10px;
 
 .password-wrapper input {
   width: 100%;
-  padding-right: 40px; /* space for the icon */
+  padding-right: 40px; 
 }
 
 .eye-icon {
@@ -182,22 +176,21 @@ border-radius: 10px;
   justify-content: center;
   gap: 10px;
   padding: 10px;
-  border: 1px solid #888; /* softer border than pure black */
-  background-color: #1a1a1a; /* dark gray to distinguish from background */
+  border: 1px solid #888; 
+  background-color: #1a1a1a; 
   cursor: pointer;
   font-size: 14px;
   transition: 0.3s;
   color: white;
 }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
   .login-container {
     flex-direction: column;
   }
 
   .login-right-image {
-    display: none;    /* Hide image section on smaller screens */
+    display: none;   
   }
 
   .login-left {
@@ -211,14 +204,13 @@ border-radius: 10px;
     border-radius: 10px;
   }
 }
-/* Tablet and below */
 @media (max-width: 1024px) {
   .login-container {
     flex-direction: column;
   }
 
   .login-right-image {
-    display: none; /* ✅ Hide image */
+    display: none; 
   }
 
   .login-left {
@@ -247,7 +239,7 @@ border-radius: 10px;
 
   .login-left {
     width: 100%;
-    padding: 0; /* Remove extra inner padding */
+    padding: 0; 
   }
 
   .login-form-box {
