@@ -266,10 +266,10 @@ html, body {
 
 .close-btn {
     display: none; 
+}
    .backdrop {
     background: none !important;
     background-image: none !important;
     backdrop-filter: none !important;
   }
-}
 }
