@@ -9,6 +9,10 @@ export default function SignIn() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+     if (password.length !== 6) {
+    alert("Password must be exactly 6 characters long.");
+    return;
+  }
     try {
       const response = await axios.post(
         "https://u5d7qofvcc.execute-api.eu-north-1.amazonaws.com/dev/signup", // ✅ Your Lambda endpoint
