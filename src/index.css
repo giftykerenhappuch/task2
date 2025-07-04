@@ -80,15 +80,16 @@ html, body {
   white-space: nowrap;
 }
 
-.container {
+  .container {
   background: #ffffff;
   border-radius: 24px;
-  max-width: 644px;
-  max-height: 756px;
-  width: 30%;
-  padding: 40px;
+  max-width: 440px; /* ↓ Reduced max-width */
+  width: 70%;       /* ↓ More responsive width */
+  padding: 30px;    /* ↓ Reduced padding */
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
 }
+
+
 
 .container h2 {
   text-align: center;
