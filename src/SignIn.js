@@ -9,13 +9,15 @@ export default function SignIn() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-     if (password.length !== 6) {
-    alert("Password must be exactly 6 characters long.");
-    return;
-  }
+
+    if (password.length !== 6) {
+      alert("Password must be exactly 6 characters long.");
+      return;
+    }
+
     try {
       const response = await axios.post(
-        "https://u5d7qofvcc.execute-api.eu-north-1.amazonaws.com/dev/signup", // ✅ Your Lambda endpoint
+        "https://u5d7qofvcc.execute-api.eu-north-1.amazonaws.com/dev/signup",
         { email, password },
         {
           headers: {
@@ -28,7 +30,9 @@ export default function SignIn() {
     } catch (error) {
       console.error("Error creating account:", error);
 
-      if (error.response) {
+      if (error.response?.status === 409) {
+        alert("This email is already registered. Try logging in.");
+      } else if (error.response) {
         alert(error.response.data.message || "Failed to create account");
       } else {
         alert("Network error or server not reachable.");
