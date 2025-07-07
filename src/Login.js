@@ -18,6 +18,12 @@ export default function LoginPage() {
         icon: 'warning',
         title: 'Missing Fields',
         text: 'Please enter both email and password.',
+        didOpen: () => {
+    const btn = Swal.getConfirmButton();
+    btn.style.backgroundColor = '#ff5722';
+    btn.style.color = '#fff';
+    btn.style.borderRadius = '15px';
+  }
       });
       return;
     }
@@ -46,6 +52,12 @@ export default function LoginPage() {
           icon: 'error',
           title: 'Login Failed',
           text: data.message || 'Invalid credentials',
+          didOpen: () => {
+    const btn = Swal.getConfirmButton();
+    btn.style.backgroundColor = '#ff5722';
+    btn.style.color = '#fff';
+    btn.style.borderRadius = '15px';
+  }
         });
       }
     } catch (err) {

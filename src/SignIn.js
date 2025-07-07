@@ -17,6 +17,12 @@ export default function SignIn() {
         icon: 'warning',
         title: 'Weak Password',
         text: 'Password must be at least 6 characters long.',
+        didOpen: () => {
+    const btn = Swal.getConfirmButton();
+    btn.style.backgroundColor = '#ff5722';
+    btn.style.color = '#fff';
+    btn.style.borderRadius = '15px';
+  }
       });
       return;
     }
@@ -39,6 +45,7 @@ export default function SignIn() {
         title: response.data.message || 'Account created successfully!',
         showConfirmButton: false,
         timer: 1500,
+        
       });
 
     } catch (error) {
@@ -55,6 +62,12 @@ export default function SignIn() {
           icon: 'error',
           title: 'Error',
           text: error.response.data.message || "Failed to create account",
+          didOpen: () => {
+    const btn = Swal.getConfirmButton();
+    btn.style.backgroundColor = '#ff5722';
+    btn.style.color = '#fff';
+    btn.style.borderRadius = '15px';
+  }
         });
       } else {
         Swal.fire({
