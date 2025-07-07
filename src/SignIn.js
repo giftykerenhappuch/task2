@@ -6,14 +6,17 @@ import './index.css';
 export default function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false); // 🔄 Loader state
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (password.length !== 6) {
-      alert("Password must be exactly 6 characters long.");
+    if (password.length <= 6) {
+      alert("Password must be 6 characters long.");
       return;
     }
+
+    setLoading(true); // Show loader
 
     try {
       const response = await axios.post(
@@ -37,6 +40,8 @@ export default function SignIn() {
       } else {
         alert("Network error or server not reachable.");
       }
+    } finally {
+      setLoading(false); // Hide loader
     }
   };
 
@@ -46,6 +51,10 @@ export default function SignIn() {
       <div className="container">
         <img src="/assets/logo.png" className="logo" alt="logo" />
         <h2>Create an account</h2>
+
+        {/* Loader display */}
+        {loading && <div className="loader"></div>}
+
         <p>
           Already have an account?{" "}
           <Link to="/login" className="a"><strong>Log in</strong></Link>
@@ -89,7 +98,9 @@ export default function SignIn() {
             />
           </div>
 
-          <button type="submit" className="btn">Create an account</button>
+          <button type="submit" className="btn" disabled={loading}>
+            {loading ? "Creating..." : "Create an account"}
+          </button>
         </form>
       </div>
     </div>
