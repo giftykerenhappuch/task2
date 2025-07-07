@@ -13,7 +13,7 @@ export default function DashboardPage() {
       showConfirmButton: false,
     }).then(() => {
       // You can clear user data from localStorage/session if needed
-      window.location.href = '/login';
+      window.location.href = '/';
     });
   };
 
