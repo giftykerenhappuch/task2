@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import SignIn from './SignIn';    // or wherever your SignIn component is
 import LoginPage from './Login';  // Login.js file
-
+import DashboardPage from './Dashboard'
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
@@ -13,6 +13,7 @@ root.render(
       <Routes>
         <Route path="/" element={<SignIn />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/DashboardPage" element={<DashboardPage />} />
       </Routes>
     </Router>
   </React.StrictMode>

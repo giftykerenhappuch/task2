@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import './login.css';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
  const [loading, setLoading] = useState(false);
+ const navigate = useNavigate();
   const togglePassword = () => {
     setShowPassword((prev) => !prev);
   };
@@ -45,7 +47,11 @@ export default function LoginPage() {
           title: data.message || 'Login successful!',
           showConfirmButton: false,
           timer: 1500,
-        });
+          
+        })
+        .then(() => {
+  navigate("/DashboardPage"); // ✅ Redirect after alert closes
+});
         // You can redirect here if needed
       } else {
         Swal.fire({

@@ -3,12 +3,13 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import './index.css';
+import { useNavigate } from 'react-router-dom';
 
 export default function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-
+const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -41,12 +42,13 @@ export default function SignIn() {
       );
 
       Swal.fire({
-        icon: 'success',
-        title: response.data.message || 'Account created successfully!',
-        showConfirmButton: false,
-        timer: 1500,
-        
-      });
+  icon: 'success',
+  title: response.data.message || 'Account created successfully!',
+  showConfirmButton: false,
+  timer: 1500,
+}).then(() => {
+  navigate("/DashboardPage"); // ✅ Redirect after alert closes
+});
 
     } catch (error) {
       console.error("Error creating account:", error);
