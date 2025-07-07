@@ -1,18 +1,23 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 import './index.css';
 
 export default function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false); // 🔄 Loader state
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (password.length <= 6) {
-      alert("Password must be 6 characters long.");
+      Swal.fire({
+        icon: 'warning',
+        title: 'Weak Password',
+        text: 'Password must be at least 6 characters long.',
+      });
       return;
     }
 
@@ -29,16 +34,34 @@ export default function SignIn() {
         }
       );
 
-      alert(response.data.message);
+      Swal.fire({
+        icon: 'success',
+        title: response.data.message || 'Account created successfully!',
+        showConfirmButton: false,
+        timer: 1500,
+      });
+
     } catch (error) {
       console.error("Error creating account:", error);
 
       if (error.response?.status === 409) {
-        alert("This email is already registered. Try logging in.");
+        Swal.fire({
+          icon: 'warning',
+          title: 'Oops...',
+          text: 'This email is already registered. Try logging in.',
+        });
       } else if (error.response) {
-        alert(error.response.data.message || "Failed to create account");
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: error.response.data.message || "Failed to create account",
+        });
       } else {
-        alert("Network error or server not reachable.");
+        Swal.fire({
+          icon: 'error',
+          title: 'Network Error',
+          text: 'Server not reachable. Please try again later.',
+        });
       }
     } finally {
       setLoading(false); // Hide loader
@@ -52,8 +75,6 @@ export default function SignIn() {
         <img src="/assets/logo.png" className="logo" alt="logo" />
         <h2>Create an account</h2>
 
-        {/* Loader display */}
-        {loading && <div className="loader"></div>}
 
         <p>
           Already have an account?{" "}

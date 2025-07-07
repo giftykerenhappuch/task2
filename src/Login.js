@@ -1,17 +1,27 @@
 import React, { useState } from 'react';
 import './login.css';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import Swal from 'sweetalert2';
 
 export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
+ const [loading, setLoading] = useState(false);
   const togglePassword = () => {
     setShowPassword((prev) => !prev);
   };
 
   const handleLogin = async () => {
+    if (!email || !password) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Missing Fields',
+        text: 'Please enter both email and password.',
+      });
+      return;
+    }
+ setLoading(true); 
     try {
       const response = await fetch('https://4hk5tuje01.execute-api.eu-north-1.amazonaws.com/test/loginhandler', {
         method: 'POST',
@@ -24,13 +34,29 @@ export default function LoginPage() {
       const data = await response.json();
 
       if (response.ok) {
-        alert(data.message); 
+        Swal.fire({
+          icon: 'success',
+          title: data.message || 'Login successful!',
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        // You can redirect here if needed
       } else {
-        alert(data.message); // "Invalid credentials"
+        Swal.fire({
+          icon: 'error',
+          title: 'Login Failed',
+          text: data.message || 'Invalid credentials',
+        });
       }
     } catch (err) {
       console.error('Login error:', err);
-      alert('Something went wrong. Try again later.');
+      Swal.fire({
+        icon: 'error',
+        title: 'Network Error',
+        text: 'Something went wrong. Try again later.',
+      });
+    }finally {
+      setLoading(false); // Hide loader
     }
   };
 
@@ -64,12 +90,12 @@ export default function LoginPage() {
           </div>
 
           <div className="login-terms">
-            <input type="checkbox" />
+            <input type="checkbox" required/>
             <span>I agree to the terms and conditions</span>
           </div>
-
-          <button className="login-btn" onClick={handleLogin}>Login</button>
-
+          <button type="submit" className="login-btn" disabled={loading} onClick={handleLogin}>
+            {loading ? "Checking..." : "Login"}
+          </button>
           <div className="login-divider">
             <div className="login-line"></div>
             <span>OR</span>
